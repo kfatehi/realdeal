@@ -1,0 +1,43 @@
+{
+  "author": "keyvan",
+  "name": "realdeal",
+  "description": "real estate collab engine",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git://git@github.com:keyvanfatehi/realdeal"
+  },
+  "dependencies": {
+    "express": "3.2.5",
+    "mongoose": "3.6.11"
+  },
+  "devDependencies": {
+    "mocha-phantomjs": "3.1.0",
+    "jshint": "2.1.2",
+    "nodemon": "0.7.8",
+    "uglify-js": "2.3.6",
+    "jade": "0.31.0",
+    "markdown": "0.4.0",
+    "http-server": "0.5.3"
+  },
+  "engines": {
+    "node": ">0.8.x"
+  },
+  "scripts": {
+    "test": "mocha-phantomjs realdeal/test/test.html",
+    "everything": "npm run-script check && npm run-script build",
+    "start": "node realdeal/server.js",
+    "check": "npm run-script style && npm run-script test",
+    "style": "npm run-script style-client && npm run-script style-server",
+    "style-server": "./node_modules/.bin/jshint --config=./dev/jshint-server.json notes-rest/server.js",
+    "style-client": "./node_modules/.bin/jshint --config=./dev/jshint-client.json notes/app/js/fixtures notes/test/js/spec notes/app/js/app notes-rest/test/js/spec-rest  notes-rest/app/js/app-rest chapters/*/test/js/spec doc",
+    "test-app": "ls realdeal/test/test*.html | xargs -I{} bash -c 'printf \"== \\e[1;35m{}\\e[0m ==\"; node_modules/.bin/mocha-phantomjs {}'",
+    "test-rest": "node_modules/.bin/mocha-phantomjs notes-rest/test/test.html",
+    "test-server": "http-server -p 4322",
+    "min-app": "uglifyjs $(cat notes/app/index.html | egrep -o 'js/app/.*?\\.js' | xargs -I {} echo 'notes-rest/app/{}') -m -c -o notes/app/js/app.min.js",
+    "min-rest": "uglifyjs $(cat notes-rest/app/index.html | egrep -o '(js|js-rest)/app/.*?\\.js' | xargs -I {} echo 'notes-rest/app/{}') -m -c -o notes-rest/app/js/app.min.js",
+    "docs": "node ./node_modules/.bin/jade -P --out ./ doc/index.jade doc/todo.jade",
+    "build": "npm run-script build-tmpl && npm run-script docs",
+    "build-tmpl": "./dev/build-templates.js > realdeal/app/js/app/templates/templates.js"
+  }
+}
