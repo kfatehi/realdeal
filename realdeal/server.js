@@ -110,7 +110,7 @@ app.get("/api/containers", function (req, res) {     // (R)ead
   Container.Model.find({}, _handler(res));
 });
 
-provider = require('./providers').themls;
+provider = require('./poltergeist').themls;
 
 // Container Model
 app.post("/api/containers", function (req, res) {    // (C)reate
