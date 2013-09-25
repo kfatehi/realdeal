@@ -27,6 +27,7 @@
     initialize: function () {
       // Cache view and just show on re-render.
       this.$input = this.$("#container-new-input");
+      this.$form_errors = this.$('#container-new-errors');
 
       // Add containers when we get data.
       //
@@ -59,7 +60,6 @@
 
     // Add single child container view to front of notes list.
     addContainer: function (model) {
-      console.log("render li");
       var view = new App.Views.ContainersItem({ model: model });
 
       this.$("#containers-list tr").first()
@@ -87,7 +87,9 @@
     createContainer: function () {
       // Get value, then reset container input.
       var input = this.$input.val().trim();
-      this.$input.val("");
+
+      // Reset error text
+      this.$form_errors.html('')
 
       if (input) {
         this.create(input);
@@ -95,14 +97,21 @@
     },
 
     create: function (title) {
+      var input = this.$input;
+      var errors = this.$form_errors;
       var coll = this.collection;
 
       // Add new model to collection, and corresponding container
       // to DOM after model is saved.
       coll.create({ title: title }, {
         success: function (colData, modelData) {
+          // Clear input
+          input.val("");
           // Trigger event on model retrieved from collection.
           coll.trigger("containers:add", coll.get(modelData.id));
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          errors.html(textStatus.responseJSON.error);
         }
       });
     }
