@@ -1,5 +1,5 @@
 /**
- * Simple MongoDB-based backend notes server.
+ * Simple MongoDB-based backend containers server.
  */
 
 var
@@ -7,7 +7,7 @@ var
   mongoose = require("mongoose"),
   MONGO_ADDR = process.env.MONGO_ADDR || "127.0.0.1",
   MONGO_PORT = parseInt(process.env.MONGO_PORT || 27017, 10),
-  Note = {},
+  Container = {},
 
   // Express.
   express = require("express"),
@@ -16,9 +16,9 @@ var
   PORT = parseInt(process.env.PORT || 4321, 10);
 
 // -----------------------
-// Notes Model
+// Containers Model
 // -----------------------
-Note.Schema = mongoose.Schema({
+Container.Schema = mongoose.Schema({
   title: {
     type: String,
     trim: true,
@@ -27,7 +27,7 @@ Note.Schema = mongoose.Schema({
   text: {
     type: String,
     trim: true,
-    "default": "*Edit your note!*"
+    "default": "*Edit your container!*"
   },
   createdAt: {
     type: Date,
@@ -43,11 +43,11 @@ Note.Schema = mongoose.Schema({
   toObject: { virtuals: true }
 });
 
-Note.Schema.virtual("id").get(function () {
+Container.Schema.virtual("id").get(function () {
   return this.get("_id");
 });
 
-Note.Model = mongoose.model("Note", Note.Schema);
+Container.Model = mongoose.model("Container", Container.Schema);
 
 // -----------------------
 // Application helpers
@@ -105,26 +105,26 @@ app.use("/test", express.static(__dirname + "/test"));
 app.use(_logRequest);
 
 // REST API
-// Notes Collection
-app.get("/api/notes", function (req, res) {     // (R)ead
-  Note.Model.find({}, _handler(res));
+// Containers Collection
+app.get("/api/containers", function (req, res) {     // (R)ead
+  Container.Model.find({}, _handler(res));
 });
 
-// Note Model
-app.post("/api/notes", function (req, res) {    // (C)reate
-  Note.Model.create(req.body, _handler(res, 201));
+// Container Model
+app.post("/api/containers", function (req, res) {    // (C)reate
+  Container.Model.create(req.body, _handler(res, 201));
 });
-app.put("/api/notes/:id", function (req, res) { // (U)pdate
-  Note.Model.findByIdAndUpdate(req.param("id"), { "$set": {
+app.put("/api/containers/:id", function (req, res) { // (U)pdate
+  Container.Model.findByIdAndUpdate(req.param("id"), { "$set": {
     title: req.body.title,
     text: req.body.text
   }}, _handler(res));
 });
-app.get("/api/notes/:id", function (req, res) { // (R)ead
-  Note.Model.findById(req.param("id"), _handler(res));
+app.get("/api/containers/:id", function (req, res) { // (R)ead
+  Container.Model.findById(req.param("id"), _handler(res));
 });
-app.del("/api/notes/:id", function (req, res) { // (D)elete
-  Note.Model.findByIdAndRemove(req.param("id"), _handler(res));
+app.del("/api/containers/:id", function (req, res) { // (D)elete
+  Container.Model.findByIdAndRemove(req.param("id"), _handler(res));
 });
 
 // Run server.

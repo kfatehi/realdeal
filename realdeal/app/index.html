@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
 
-    <title>Containers</title>
+    <title>Realdeal</title>
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="js/lib/bootstrap/css/bootstrap.css">
@@ -18,7 +18,7 @@
     <!-- Navigation Bar -->
     <div id="nav" class="navbar">
       <div class="navbar-inner">
-        <a class="brand" href="#">Containers</a>
+        <a class="brand" href="#">Realdeal</a>
 
         <!-- Nav's for single container view -->
         <ul id="container-nav" class="nav region region-container" style="display: none;">
@@ -60,7 +60,7 @@
             <tr class="containers-new">
               <td class="container-name">
                 <input id="container-new-input"
-                       placeholder="Write a new container." autofocus>
+                       placeholder="Add property by Address or URL." autofocus>
               </td>
               <td class="container-action">
                 <button id="container-create" class="btn pull-right">
@@ -117,5 +117,21 @@
         app.containersView.addContainers();
       });
     </script>-->
+
+       <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'realdealapp'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
   </body>
 </html>
