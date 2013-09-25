@@ -110,13 +110,13 @@ app.get("/api/containers", function (req, res) {     // (R)ead
   Container.Model.find({}, _handler(res));
 });
 
-redfin = require('./redfin')
+provider = require('./providers').themls;
 
 // Container Model
 app.post("/api/containers", function (req, res) {    // (C)reate
-  redfin.locateProperty(req.body.title, function(result){
+  provider.locateProperty(req.body.title, function(result){
     if (result === false)
-      res.send(422, { error: "Property not found on Redfin" }); 
+      res.send(422, { error: "Property not found." }); 
     else {
       req.body.text = result;
       Container.Model.create(req.body, _handler(res, 201));
