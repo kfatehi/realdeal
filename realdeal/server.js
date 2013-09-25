@@ -110,10 +110,18 @@ app.get("/api/containers", function (req, res) {     // (R)ead
   Container.Model.find({}, _handler(res));
 });
 
+redfin = require('./redfin')
+
 // Container Model
 app.post("/api/containers", function (req, res) {    // (C)reate
-  Container.Model.create(req.body, _handler(res, 201));
-  // res.send(422, { error: "Property not found on Redfin" }); 
+  redfin.locateProperty(req.body.title, function(result){
+    if (result === false)
+      res.send(422, { error: "Property not found on Redfin" }); 
+    else {
+      req.body.text = result;
+      Container.Model.create(req.body, _handler(res, 201));
+    }
+  });
 });
 app.put("/api/containers/:id", function (req, res) { // (U)pdate
   Container.Model.findByIdAndUpdate(req.param("id"), { "$set": {
