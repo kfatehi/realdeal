@@ -60,6 +60,5 @@
       });
       $("#container").html(this.containerView.render().$el);
     }
-
   });
 }());

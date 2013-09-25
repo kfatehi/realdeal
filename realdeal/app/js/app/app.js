@@ -30,5 +30,4 @@ $(function () {
 
   // Now fetch collection data, kicking off everything.
   app.collection.fetch({ reset: true });
-
 });

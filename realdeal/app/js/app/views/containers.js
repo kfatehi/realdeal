@@ -59,9 +59,10 @@
 
     // Add single child container view to front of notes list.
     addContainer: function (model) {
+      console.log("render li");
       var view = new App.Views.ContainersItem({ model: model });
 
-      this.$("#containers-list tr")
+      this.$("#containers-list tr").first()
         .after(view.render().$el);
     },
 

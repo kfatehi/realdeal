@@ -3,7 +3,7 @@
 
   // Containers Item View
   // ---------------
-  // A single container within a list of notes.
+  // A single container within a list of containers.
   App.Views.ContainersItem = Backbone.View.extend({
 
     // Set rendered DOM element `id` property to the model's id.

@@ -7,6 +7,9 @@ App.Templates["template-containers-item"] =
   "</td>" +
   "<td class=\"container-action\">" +
   "  <div class=\"btn-group pull-right\">" +
+  "    <button class=\"btn container-view\">" +
+  "      <i class=\"icon-file\"></i>" +
+  "    </button>" +
   "    <button class=\"btn container-edit\">" +
   "      <i class=\"icon-pencil\"></i>" +
   "    </button>" +

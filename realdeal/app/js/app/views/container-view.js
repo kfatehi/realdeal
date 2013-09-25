@@ -18,7 +18,7 @@
     render: function () {
       this.$el.html(this.template({
         title: this.model.get("title"),
-        text: this.converter.makeHtml(this.model.get("text"))
+        text: this.model.get("text")
       }));
       return this;
     }
