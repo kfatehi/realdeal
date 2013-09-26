@@ -89,9 +89,10 @@
       var input = this.$input.val().trim();
 
       // Reset error text
-      this.$form_errors.html('')
+      this.$form_errors.html('');
 
       if (input) {
+        this.$form_errors.html('Locating...');
         this.create(input);
       }
     },
@@ -107,6 +108,10 @@
         success: function (colData, modelData) {
           // Clear input
           input.val("");
+
+          // Clear errors
+          errors.html("");
+
           // Trigger event on model retrieved from collection.
           coll.trigger("containers:add", coll.get(modelData.id));
         },
