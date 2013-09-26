@@ -110,13 +110,16 @@ app.get("/api/containers", function (req, res) {     // (R)ead
   Container.Model.find({}, _handler(res));
 });
 
+exec = require("child_process").exec
+
 // Container Model
 app.post("/api/containers", function (req, res) {    // (C)reate
-  provider.locateProperty(req.body.title, function(result){
-    if (result === false)
-      res.send(422, { error: "Property not found." }); 
-    else {
-      req.body.text = result;
+  req.body.title = ''
+  exec('./mls.rb "'+req.body.title+'"', function(error, stdout, stderr) {
+    if (error !== null) {
+      res.send(422, { error: ("error in mls.rb: " + error) }); 
+    } else {
+      req.body.text = stdout; // Listing HTML
       Container.Model.create(req.body, _handler(res, 201));
     }
   });
