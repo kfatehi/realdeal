@@ -19,9 +19,6 @@
 nbproject
 Thumbs.db
 
-# Brunch output folder.
-public/
-
 # Client-side packages
 bower_components/
 
