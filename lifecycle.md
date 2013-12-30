@@ -80,3 +80,7 @@ There seems to be need for a unified software bringing all these together, and a
 	- total and tiered down to the units
 
 * other data points
+
+## links
+
+[http://www.biggerpockets.com/renewsblog/2010/06/30/introduction-to-real-estate-analysis-investing/](http://www.biggerpockets.com/renewsblog/2010/06/30/introduction-to-real-estate-analysis-investing/)
