@@ -1,8 +1,6 @@
 # Realdeal
 
-# What ?
-
-Realdeal is a set of software related to real estate.
+Not-yet-made set of software related to real estate.
 
 Use it to keep track of properties that you find from different sources
 (emails from your agent, browsing Redfin, etc); it doesn't matter where
@@ -11,9 +9,25 @@ in order to populate fields in the database -- at the minimum, realdeal
 requires the street address -- this is used to ping various sources
 such as Redfin to pick up the remaining data.
 
-# Why ?
+## Status
 
-A few reasons:
+Waiting for 3rd party services like Redfin & Zillow to release and
+improve API, respectively. The first thing we need is to be able to make
+a queries like this:
+
+1. find all for-sale properties priced below X that publish rental income within LOCATION sorted by difference between estimated mortgage minus cumulative rental income
+
+2. source crime data for LOCATION from government sites for overall score calc
+
+Currently I'm finding that published rental income is only on Redfin,
+which has no API and would require a hefty amount of time investment to
+build a DOM scraper that would be brittle. Zillow does not seem to have
+this information. In addition, not every property has the rental income.
+Zillow's APIs try to do a "Zestimate" type guess on the Rental but upon
+examination this wasn't even in the XML results from Zillow's deep
+search API. So right now I can't even do #1 justice.
+
+# Feature Wishlist
 
 ## Notifications
 
